@@ -1,14 +1,12 @@
 """
 Author: zhaohang.zh13@bytedance.com
 Date: 2021-03-10 12:01:52
-LastEditTime: 2021-03-10 12:14:15
+LastEditTime: 2021-03-10 12:17:38
 """
 dependencies = ["torch"]
 
 import torch
-import sys
-sys.path.append('core')
-from raft import RAFT as RAFTNet
+from core.raft import RAFT as RAFTNet
 
 
 def RAFT(pretrained=True, **kwargs):
