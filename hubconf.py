@@ -1,22 +1,22 @@
 """
 Author: zhaohang.zh13@bytedance.com
 Date: 2021-03-10 12:01:52
-LastEditTime: 2021-03-10 12:17:38
+LastEditTime: 2021-03-10 12:21:44
 """
 dependencies = ["torch"]
 
 import torch
+import argparse
 from core.raft import RAFT as RAFTNet
 
 
 def RAFT(pretrained=True, **kwargs):
-    class _ARGS:
-        def __init__(self):
-            self.small = False
-            self.mixed_precision = False
-            self.alternate_corr = False
-
-    model = RAFTNet(_ARGS())
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--small', action='store_true', help='use small model')
+    parser.add_argument('--mixed_precision', action='store_true', help='use mixed precision')
+    parser.add_argument('--alternate_corr', action='store_true', help='use efficent correlation implementation')
+    args = parser.parse_args([])
+    model = RAFTNet(args)
 
     if pretrained:
         checkpoint = (
